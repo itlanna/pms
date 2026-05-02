@@ -1,50 +1,41 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
 
-  <title>TCE PMS</title>
-
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: #fff;
-    }
-
-    iframe {
-      position: absolute;
-      top: -50px;
-      left: 0;
-      width: 100%;
-      height: calc(100vh + 50px);
-      border: none;
-    }
-  </style>
+iframe {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh + 50px);
+  border: none;
+}
+</style>
 </head>
 <body>
 
-  <iframe id="appFrame"></iframe>
+<iframe id="appFrame"></iframe>
 
-  <script>
-    const desktopURL = "https://script.google.com/macros/s/AKfycbxfgF8krp27WUDfEtLlLValFsvWDzNsjOu-w1gaD5v-9oJEAmbun90b7Evv99tjPSu2dQ/exec";
-    const mobileURL = "IndexMobile.html";
+<script>
+const baseURL = "https://script.google.com/macros/s/AKfycbxfgF8krp27WUDfEtLlLValFsvWDzNsjOu-w1gaD5v-9oJEAmbun90b7Evv99tjPSu2dQ/exec";
 
-    function loadApp() {
-      const isMobile = window.innerWidth <= 768;
-      document.getElementById("appFrame").src = isMobile ? mobileURL : desktopURL;
-    }
+function loadApp() {
+  const isMobile = window.innerWidth <= 768;
+  const url = isMobile ? baseURL + "?view=mobile" : baseURL;
+  document.getElementById("appFrame").src = url;
+}
 
-    loadApp();
+loadApp();
 
-    window.addEventListener("resize", function () {
-      loadApp();
-    });
-  </script>
+window.addEventListener("resize", loadApp);
+</script>
 
 </body>
 </html>
