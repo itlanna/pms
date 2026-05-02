@@ -1,41 +1,39 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TCE PMS</title>
 
-  <title>TCE PMS</title>
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #f4f6fb;
+}
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: #f4f6fb;
-    }
+.app {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
 
-    .app {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    iframe {
-      position: absolute;
-      top: -35px; /* ปรับตรงนี้ถ้ายังเห็นแถบ */
-      left: 0;
-      width: 100%;
-      height: calc(100vh + 35px);
-      border: none;
-    }
-  </style>
+iframe {
+  position: absolute;
+  top: -15px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh + 15px);
+  border: none;
+}
+</style>
 </head>
 
 <body>
-
 <div class="app">
   <iframe id="appFrame"></iframe>
 </div>
@@ -45,12 +43,12 @@ const baseURL = "https://script.google.com/macros/s/AKfycbxfgF8krp27WUDfEtLlLVal
 
 function loadApp() {
   const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
-  const url = isMobile ? baseURL + "?view=mobile" : baseURL;
-  document.getElementById("appFrame").src = url;
+  document.getElementById("appFrame").src = isMobile
+    ? baseURL + "?view=mobile"
+    : baseURL;
 }
 
 loadApp();
 </script>
-
 </body>
 </html>
